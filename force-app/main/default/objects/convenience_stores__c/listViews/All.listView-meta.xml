@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>location_name__c</columns>
+    <columns>point__Latitude__s</columns>
+    <columns>point__Longitude__s</columns>
+    <filterScope>Everything</filterScope>
+    <label>すべて選択</label>
+</ListView>

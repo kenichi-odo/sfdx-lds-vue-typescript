@@ -1,0 +1,26 @@
+<apex:page
+  sidebar="false"
+  showHeader="false"
+  standardStylesheets="false"
+  applyBodyTag="false"
+  applyHtmlTag="false"
+  docType="html-5.0">
+
+  <apex:remoteObjects>
+    <apex:remoteObjectModel
+      name="convenience_stores__c"
+      fields="location_name__c, Name, point__Latitude__s, point__Longitude__s" />
+  </apex:remoteObjects>
+
+
+  <div id="app"></div>
+
+
+  <script src="{!URLFOR($Resource.ConvenienceStores, '/bundle.js')}"></script>
+
+
+  <script>
+    var _vtss = new ConvenienceStores.default();
+  </script>
+
+</apex:page>

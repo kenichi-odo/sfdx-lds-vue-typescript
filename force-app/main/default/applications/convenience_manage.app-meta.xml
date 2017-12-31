@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+    </brand>
+    <formFactors>Large</formFactors>
+    <label>コンビニ管理</label>
+    <navType>Standard</navType>
+    <tab>convenience_stores__c</tab>
+    <uiType>Lightning</uiType>
+    <utilityBar>UtilityBar</utilityBar>
+</CustomApplication>
