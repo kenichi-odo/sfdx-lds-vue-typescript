@@ -1,12 +1,1 @@
-# SFDX  App
-
-## Dev, Build and Test
-
-
-## Resources
-
-
-## Description of Files and Directories
-
-
-## Issues
+- [Salesforce DX with LDS + TypeScript + Vue.js(雰囲気プログラマーの雑記)](https://kenichi-odo.appspot.com/2018/01/06/salesforce-dx-with-lds-typescript-vue-js/)

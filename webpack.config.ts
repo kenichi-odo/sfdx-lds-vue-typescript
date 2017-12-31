@@ -1,15 +1,16 @@
 const Webpack = require('webpack')
 const BuildNotifier = require('webpack-build-notifier')
-const SfdcDeployPlugin = require('webpack-sfdc-deploy-plugin')
+const Autoprefixer = require('autoprefixer')
+// const SFDCDeployPlugin = require('webpack-sfdc-deploy-plugin')
 
 module.exports = env_ => {
   if (env_ == null) {
     env_ = {}
   }
 
-  const config: any = {
+  const config = {
     context: `${__dirname}/client/src/${env_.resource_name}`,
-    entry: { bundle: ['babel-polyfill', 'whatwg-fetch', './index.ts'] },
+    entry: { bundle: ['babel-polyfill', './index.ts'] },
     module: {
       rules: [
         {
@@ -17,26 +18,31 @@ module.exports = env_ => {
           use: [
             {
               loader: 'babel-loader',
-              options: { presets: [['env', { targets: { browsers: ['last 2 versions', 'android >= 4.4', 'ie >= 11'] } }]] },
+              options: { presets: [['env', { targets: { browsers: ['ie >= 10', 'last 2 versions'] }, useBuiltIns: true }]] },
             },
             { loader: 'ts-loader', options: { appendTsSuffixTo: [/\.vue$/], silent: true } },
           ],
         },
         { test: /\.vue$/, use: ['vue-loader'] },
-        { test: /\.css$/, use: ['style-loader', { loader: 'css-loader', options: { modules: true } }] },
+        {
+          test: /\.css$/, use: [
+            'style-loader',
+            { loader: 'css-loader', options: { modules: true } },
+            { loader: 'postcss-loader', options: { plugins: Autoprefixer({ browsers: ['ie >= 10', 'last 2 versions'] }) } },
+          ],
+        },
         { test: /(\.woff|\.woff2|\.svg)$/, use: ['url-loader'] },
       ],
     },
     plugins: [
-      new Webpack.ProvidePlugin({ URLSearchParams: 'url-search-params', FormData: 'form-data' }),
-      // new SfdcDeployPlugin({
+      // new SFDCDeployPlugin({
       //   credentialsPath: `${__dirname}/salesforce.config.js`,
       //   filesFolderPath: `${__dirname}/force-app/main/default/staticresources/${env_.resource_name}`,
       //   staticResourceName: env_.resource_name,
       //   isPublic: true,
       // }),
       new BuildNotifier({
-        title: 'sfdc-olympic',
+        title: 'sfdx-lds-vue-typescript',
         successSound: false,
         suppressCompileStart: false,
         onClick: () => null,
@@ -50,7 +56,7 @@ module.exports = env_ => {
       library: env_.resource_name,
     },
     resolve: { extensions: ['.ts', '.js'], alias: { vue: 'vue/dist/vue.js' } },
-  }
+  } as any
 
   if (env_.production) {
     config.plugins.push(new Webpack.DefinePlugin({ 'process.env': { NODE_ENV: '"production"' } }))

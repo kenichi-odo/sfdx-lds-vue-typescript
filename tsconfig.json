@@ -20,7 +20,7 @@
     "sourceMap": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "target": "es5",
+    "target": "esnext",
     "traceResolution": true,
     "typeRoots": [
       "./node_modules/@types"
